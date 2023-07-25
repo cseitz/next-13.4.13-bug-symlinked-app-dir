@@ -3,7 +3,7 @@
 I am using a symlinked directory within my `app` folder. This symlink 404's in development, but **works perfectly** in production.
 
 - I have a directory, [`src/features/test1/app`](./src//features/test1/app), that is symlinked into [`src/app/(features)/(test1)`](./src/app/(features)/(test1))
-- I symlinked this folder with code in [`links.ts`](./links.ts)
+- I symlinked this folder `ln -sr "./src/features/test1/app" "./src/app/(features)/(test1)"`
 - I have done no additional configuration to next.js
 
 ### Reproducing
