@@ -1,7 +1,9 @@
 import { readdir, stat, symlink } from 'fs/promises';
 import { join } from 'path';
 
-symlink(__dirname + '/src/features/test1/app', __dirname + '/src/app/(features)/(test1)').then(o => console.log(o))
+// n -sr "./src/features/test1/app" "./src/app/(features)/(test1)"
+// symlink(__dirname + '/src/features/test1/app', __dirname + '/src/app/(features)/(test1)').then(o => console.log(o))
+// symlink('./src/features/test1/app', __dirname + './src/app/(features)/(test1)').then(o => console.log(o))
 
 const __appFeatures = __dirname + '/src/app/(features)';
 readdir(__appFeatures, {
