@@ -1,34 +1,20 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Symlinked App Directory
 
-## Getting Started
+I am using a symlinked directory within my `app` folder. This symlink 404's in development, but **works perfectly** in production.
 
-First, run the development server:
+- I have a directory, [`src/features/test1/app`](./src//features/test1/app), that is symlinked into [`src/app/(features)/(test1)`](./src/app/(features)/(test1))
+- I symlinked this folder with code in [`links.ts`](./links.ts)
+- I have done no additional configuration to next.js
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+### Reproducing
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Running `next dev` and visiting [`localhost:3000/test1`](http://localhost:3000/test1) will `404 NOT FOUND`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+However, running `next build` and `next start` and visiting [`localhost:3000/test1`](http://localhost:3000/test1) **will load just fine**.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Clearly, due to `src/features/test1/app/test1/page.tsx` being accessible in production builds, it should also be accessible via `next dev`.
 
-## Learn More
+### Areas to Investigate
 
-To learn more about Next.js, take a look at the following resources:
+Why is this symlinked folder incorrectly resolving in `next dev`, but resolving just fine in `next build`?
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
