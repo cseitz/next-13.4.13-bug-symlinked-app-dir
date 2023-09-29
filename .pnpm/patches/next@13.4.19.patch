@@ -1,0 +1,26 @@
+diff --git a/dist/esm/server/future/route-matcher-providers/dev/helpers/file-reader/default-file-reader.js b/dist/esm/server/future/route-matcher-providers/dev/helpers/file-reader/default-file-reader.js
+index e8a064d17ab360c9ba273c9d7e8f05ca18104209..ea93197ec2da4c5cf87cdf113422e0cdeede5b20 100644
+--- a/dist/esm/server/future/route-matcher-providers/dev/helpers/file-reader/default-file-reader.js
++++ b/dist/esm/server/future/route-matcher-providers/dev/helpers/file-reader/default-file-reader.js
+@@ -37,7 +37,7 @@ export class DefaultFileReader {
+                     const pathname = path.join(directory, file.name);
+                     // If the file is a directory, then add it to the list of directories,
+                     // they'll be scanned on a later pass.
+-                    if (file.isDirectory()) {
++                    if (file.isDirectory() || file.isSymbolicLink()) {
+                         directories.push(pathname);
+                     } else {
+                         pathnames.push(pathname);
+diff --git a/dist/server/future/route-matcher-providers/dev/helpers/file-reader/default-file-reader.js b/dist/server/future/route-matcher-providers/dev/helpers/file-reader/default-file-reader.js
+index a625a90f9f8243296d8d5ad0f2a5b2b65a7e42a9..c5e258c6dbfe633834a91732b607c34acd779a6c 100644
+--- a/dist/server/future/route-matcher-providers/dev/helpers/file-reader/default-file-reader.js
++++ b/dist/server/future/route-matcher-providers/dev/helpers/file-reader/default-file-reader.js
+@@ -52,7 +52,7 @@ class DefaultFileReader {
+                     const pathname = _path.default.join(directory, file.name);
+                     // If the file is a directory, then add it to the list of directories,
+                     // they'll be scanned on a later pass.
+-                    if (file.isDirectory()) {
++                    if (file.isDirectory() || file.isSymbolicLink()) {
+                         directories.push(pathname);
+                     } else {
+                         pathnames.push(pathname);

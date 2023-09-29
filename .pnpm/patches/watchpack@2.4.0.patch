@@ -1,0 +1,22 @@
+diff --git a/lib/DirectoryWatcher.js b/lib/DirectoryWatcher.js
+index abbb142d0ffe57f32cc57f00b10baf25f7196325..de9bb80a763bfeffa7ccaa77159c9b880e22a0a2 100644
+--- a/lib/DirectoryWatcher.js
++++ b/lib/DirectoryWatcher.js
+@@ -392,7 +392,7 @@ class DirectoryWatcher extends EventEmitter {
+ 			const checkStats = () => {
+ 				if (this.closed) return;
+ 				this._activeEvents.set(filename, false);
+-				fs.lstat(filePath, (err, stats) => {
++				fs.stat(filePath, (err, stats) => {
+ 					if (this.closed) return;
+ 					if (this._activeEvents.get(filename) === true) {
+ 						process.nextTick(checkStats);
+@@ -625,7 +625,7 @@ class DirectoryWatcher extends EventEmitter {
+ 					}
+ 				});
+ 				for (const itemPath of itemPaths) {
+-					fs.lstat(itemPath, (err2, stats) => {
++					fs.stat(itemPath, (err2, stats) => {
+ 						if (this.closed) return;
+ 						if (err2) {
+ 							if (
